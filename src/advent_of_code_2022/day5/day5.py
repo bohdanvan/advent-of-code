@@ -15,7 +15,7 @@ class CargoBoard(TypedDict):
 
 def main() -> None:
     input = read_input(
-        "/Users/bvanchuhov/Projects/Python/algo-py/src/advent_of_code_2022/day5/input.txt"
+        "src/advent_of_code_2022/day5/input.txt"
     )
 
     print(f"1 -> {solve_part1(deep_copy(input['stacks']), input['moves'])}")
@@ -24,16 +24,17 @@ def main() -> None:
 
 def deep_copy(matrix: List[List[str]]) -> List[List[str]]:
     return [row.copy() for row in matrix]
-    
+
+
 def solve_part1(stacks: List[List[str]], moves: List[Move]) -> str:
     for move in moves:
         from_idx = move["from_idx"]
         to_idx = move["to_idx"]
         count = move["count"]
-        
+
         for i in range(count):
             stacks[to_idx].append(stacks[from_idx].pop())
-    
+
     top_crates = [stack[-1] for stack in stacks]
     return ''.join(top_crates)
 
@@ -43,16 +44,15 @@ def solve_part2(stacks: List[List[str]], moves: List[Move]) -> str:
         from_idx = move["from_idx"]
         to_idx = move["to_idx"]
         count = move["count"]
-        
+
         block = []
         for i in range(count):
             block.append(stacks[from_idx].pop())
-            
+
         stacks[to_idx].extend(reversed(block))
-    
+
     top_crates = [stack[-1] for stack in stacks]
     return ''.join(top_crates)
-
 
 
 def read_input(file_name: str) -> CargoBoard:
@@ -62,12 +62,12 @@ def read_input(file_name: str) -> CargoBoard:
 
         matrix = [parse_line(f.readline()[:-1]) for i in range(rows)]
         stacks = matrix_to_stacks(matrix)
-        
-        f.readline() # skip
-        f.readline() # skip
+
+        f.readline()  # skip
+        f.readline()  # skip
 
         moves = [parse_move(line.strip()) for line in f.readlines()]
-        
+
         return {
             "stacks": stacks,
             "moves": moves
@@ -108,7 +108,7 @@ def parse_move(s: str) -> Move:
 
 
 def split_chunks(s: str, chunk_size: int) -> List[str]:
-    return [s[i : i + chunk_size] for i in range(0, len(s), chunk_size)]
+    return [s[i: i + chunk_size] for i in range(0, len(s), chunk_size)]
 
 
 if __name__ == "__main__":

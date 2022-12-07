@@ -2,11 +2,12 @@
 from enum import Enum, IntEnum
 from typing import List, Tuple
 
+
 class Option(IntEnum):
     ROCK = 0
     PAPER = 1
     SCISSORS = 2
-    
+
 
 class RoundResult(Enum):
     LOSE = "X"
@@ -15,24 +16,25 @@ class RoundResult(Enum):
 
 
 def main() -> None:
-    input = read_input('/Users/bvanchuhov/Projects/Python/algo-py/src/advent_of_code_2022/day2/input.txt')
-    
+    input = read_input(
+        'src/advent_of_code_2022/day2/input.txt')
+
     rounds_part1 = list(map(
-        lambda r: (parse_opponent_option(r[0]), parse_my_option(r[1])), 
+        lambda r: (parse_opponent_option(r[0]), parse_my_option(r[1])),
         input
     ))
     print(solve_part1(rounds_part1))
-    
+
     rounds_part2 = list(map(
-        lambda r: (parse_opponent_option(r[0]), parse_round_result(r[1])), 
+        lambda r: (parse_opponent_option(r[0]), parse_round_result(r[1])),
         input
     ))
     print(solve_part2(rounds_part2))
 
-    
+
 def solve_part1(rounds: List[Tuple[Option, Option]]) -> int:
     return sum([win_score(r[0], r[1]) + choise_score(r[1]) for r in rounds])
-     
+
 
 def win_score(opponent_choice: Option, my_choice: Option) -> int:
     if opponent_choice == my_choice:
@@ -45,7 +47,7 @@ def win_score(opponent_choice: Option, my_choice: Option) -> int:
 
 def choise_score(my_choice: Option) -> int:
     return int(my_choice) + 1
-    
+
 
 def solve_part2(rounds: List[Tuple[Option, RoundResult]]) -> int:
     return sum([win_score_by_result(r[1]) + choise_score(find_my_choise(r[0], r[1])) for r in rounds])
@@ -58,7 +60,7 @@ def win_score_by_result(result: RoundResult) -> int:
         return 3
     else:
         return 0
-    
+
 
 def find_my_choise(opponent_choice: Option, result: RoundResult) -> Option:
     if result == RoundResult.DRAW:
@@ -95,8 +97,8 @@ def parse_round_result(s: str) -> RoundResult:
 
 def read_input(file_name: str) -> List[List[str]]:
     with open(file_name) as f:
-        return [line.split() for  line in f]
-        
+        return [line.split() for line in f]
+
 
 if __name__ == "__main__":
     main()

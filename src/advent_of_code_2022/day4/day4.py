@@ -6,7 +6,7 @@ Range = Tuple[int, int]
 
 def main() -> None:
     pairs = read_input(
-        "/Users/bvanchuhov/Projects/Python/algo-py/src/advent_of_code_2022/day4/input.txt"
+        "src/advent_of_code_2022/day4/input.txt"
     )
 
     print(f"1 -> {solve_part1(pairs)}")
