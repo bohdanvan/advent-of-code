@@ -4,6 +4,8 @@ from functools import reduce
 import re
 from typing import List, Optional, Tuple, TypeVar
 
+from utils.utils import split_to_chunks
+
 
 class Monkey:
     def __init__(
@@ -32,7 +34,7 @@ class Monkey:
             ],
             operation=Operation.parse(lines[2]),
             monkey_test=MonkeyTest.parse(lines[3:6]),
-            divider=divider
+            divider=divider,
         )
 
     def inspect(self) -> List[Tuple[int, int]]:
@@ -54,7 +56,7 @@ class Monkey:
 
     def add_item(self, item: int) -> None:
         self.items.append(item)
-        
+
     def set_mod(self, mod: int) -> None:
         self.mod = mod
 
@@ -125,10 +127,10 @@ def from_regex(pattern: str, s: str) -> str:
 
 def main() -> None:
     input = read_input("src/advent_of_code_2022/day11/input.txt")
-    
+
     monkeys = parse_input(input, divider=3)
     print(f"1 -> {solve_part1(monkeys, 20)}")
-    
+
     monkeys_2 = parse_input(input, divider=1)
     print(f"2 -> {solve_part2(monkeys_2)}")
 
@@ -151,7 +153,7 @@ def solve_part1(monkeys: List[Monkey], rounds: int):
 
 
 def solve_part2(monkeys: List[Monkey]):
-    mod = reduce(lambda a, b: a*b, [m.monkey_test.divider for m in monkeys], 1)
+    mod = reduce(lambda a, b: a * b, [m.monkey_test.divider for m in monkeys], 1)
     for m in monkeys:
         m.set_mod(mod)
     return solve_part1(monkeys, 10000)
@@ -160,13 +162,6 @@ def solve_part2(monkeys: List[Monkey]):
 def read_input(file_name: str) -> List[str]:
     with open(file_name) as f:
         return [line.strip() for line in f]
-
-
-T = TypeVar("T")
-
-
-def split_to_chunks(list: List[T], chunk_size: int) -> List[List[T]]:
-    return [list[i : i + chunk_size] for i in range(0, len(list), chunk_size)]
 
 
 if __name__ == "__main__":

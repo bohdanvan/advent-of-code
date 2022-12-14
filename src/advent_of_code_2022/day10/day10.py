@@ -1,6 +1,8 @@
 from enum import Enum
 from typing import List, Optional, TypedDict
 
+from utils.utils import split_to_chunks
+
 SCREEN_WIDTH = 40
 
 
@@ -72,10 +74,6 @@ def solve_part2(ops: List[Operation]):
     print(f"step = {step}")
 
     return "\n".join(["".join(line) for line in split_to_chunks(res, SCREEN_WIDTH)])
-
-
-def split_to_chunks(list: List[str], chunk_size: int) -> List[List[str]]:
-    return [list[i : i + chunk_size] for i in range(0, len(list), chunk_size)]
 
 
 def parse_operation(line: str) -> Operation:
