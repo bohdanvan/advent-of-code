@@ -16,6 +16,10 @@ def create_array(size: int, filler: T) -> List[T]:
     return [filler for i in range(size)]
 
 
+def create_matrix(rows: int, cols: int, filler: T) -> List[List[T]]:
+    return [[filler for j in range(cols)] for i in range(rows)]
+
+
 def create_3d_grid(
     x_size: int, y_size: int, z_size: int, filler: T
 ) -> List[List[List[T]]]:
