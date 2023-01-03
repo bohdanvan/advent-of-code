@@ -2,6 +2,7 @@
     "python.testing.pytestArgs": [
         "src"
     ],
+    "python.linting.enabled": true,
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.envFile": "${workspaceFolder}/.env"
