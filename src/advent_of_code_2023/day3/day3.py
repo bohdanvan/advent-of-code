@@ -40,7 +40,7 @@ def solve_part1(matrix: List[str]) -> int:
 
 
 def solve_part2(matrix: List[str]) -> int:
-    gear_dict: Dict[Tuple[int, int], int] = {}
+    gear_dict: Dict[Tuple[int, int], Set[int]] = {}
 
     curr_num = 0
     curr_gears: Set[Tuple[int, int]] = set()
