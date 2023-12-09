@@ -1,5 +1,4 @@
-from functools import reduce
-from typing import Dict, List, Set, Tuple
+from typing import List, Tuple
 
 
 def main() -> None:
