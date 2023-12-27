@@ -59,10 +59,6 @@ def visualise_graph(adj_dict: AdjDict):
     net.show("mygraph.html", notebook=False)
 
 
-def solve_part2():
-    pass
-
-
 def parse_adj_dict(lines: List[str]) -> AdjDict:
     adj_list = [parse_adj_node(line) for line in lines]
 
