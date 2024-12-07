@@ -35,13 +35,13 @@ def main() -> None:
 
 
 def solve_part1(input: List[str]) -> int:
-    ## Bruite force solution: O(Lines * N * 2^N)
+    ## Brute force solution: O(Lines * N * 2^N)
     equations = list(map(parse, input))
     return solve(equations, "short_ops_universe")
 
 
 def solve_part2(input: List[str]) -> int:
-    ## Bruite force solution: O(Lines * N * 3^N)
+    ## Brute force solution: O(Lines * N * 3^N)
     equations = list(map(parse, input))
     return solve(equations, "long_ops_universe")
 
