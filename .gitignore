@@ -1,3 +1,6 @@
 .pytest_cache
+.mypy_cache
+.venv
+.DS_Store
 __pycache__
-./lib/*
+lib
