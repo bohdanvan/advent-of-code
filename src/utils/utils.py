@@ -1,5 +1,4 @@
 from typing import List, TypeVar
-import os
 
 T = TypeVar("T")
 
@@ -30,3 +29,13 @@ def create_3d_grid(
 
 def deep_copy_matrix(matrix: List[List[T]]) -> List[List[T]]:
     return [row.copy() for row in matrix]
+
+
+def split_list(list: List[T], separator: T) -> List[List[T]]:
+    sep_idxs: List[int] = (
+        [-1] + [idx for idx, s in enumerate(list) if s == separator] + [len(list)]
+    )
+    res: List[List[T]] = []
+    for i in range(len(sep_idxs) - 1):
+        res.append(list[sep_idxs[i] + 1 : sep_idxs[i + 1]])
+    return res
